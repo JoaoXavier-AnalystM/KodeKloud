@@ -1,0 +1,12 @@
+{
+    "dashboard": {
+      "title": "Example Dashboard",
+      "uid": "example-dashboard",
+      "time": {
+        "from": "now-1h",
+        "to": "now"
+      },
+      "panels": []
+    }
+  }
+  

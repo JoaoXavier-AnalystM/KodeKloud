@@ -158,5 +158,15 @@ cython_debug/
 .history
 .ionide
 
-data/
+# Support for Project snippet scope
+# !.vscode/*.code-snippets
 
+# End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
+
+### Docker-Compose ###
+examples/docker-compose/data/grafana/*
+!examples/docker-compose/data/grafana/.gitkeep
+examples/docker-compose/data/prometheus/*
+!examples/docker-compose/data/prometheus/.gitkeep
+examples/docker-compose/data/rundeck/*
+!examples/docker-compose/data/rundeck/.gitkeep

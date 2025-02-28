@@ -1,0 +1,21 @@
+version: "3.8"  # Adicione essa linha no topo!
+
+services:
+  pihole:
+    image: pihole/pihole:2024.07.0
+    container_name: pihole
+    restart: unless-stopped
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      - TZ=America/Sao_Paulo
+      - FTLCONF_dns_listeningMode=all
+      - WEBPASSWORD=minha_senha_secreta
+    volumes:
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN

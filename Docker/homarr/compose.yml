@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/homarr-labs/homarr:latest
+    restart: unless-stopped
+    ports:
+      - "7575:7575"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Opcional, apenas se quiser integração com Docker
+      - ./homarr/appdata:/appdata
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "0.5"
+          
+    environment:
+      - SECRET_ENCRYPTION_KEY_FILE=./hommar/homarr_secret_key.txt
+    secrets:
+      - homarr_secret_key
+
+secrets:
+  homarr_secret_key:
+    file: ./homarr_secret_key.txt

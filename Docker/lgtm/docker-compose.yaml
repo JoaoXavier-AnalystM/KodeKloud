@@ -1,0 +1,53 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.1.0
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"  
+    volumes:
+      - ./prometheus:/etc/prometheus  
+      - lgtm
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"  
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "512M"
+        reservations:
+          cpus: "0.5"
+          memory: "256M"
+
+  grafana:
+    image: grafana/grafana:11.2.6
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    networks:
+      - lgtm
+    user: "472"
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: "512M"
+        reservations:
+          cpus: "0.5"
+          memory: "256M"
+          
+volumes:
+  grafana_data:
+    driver: local
+
+networks:
+  lgtm:
+    driver: bridge

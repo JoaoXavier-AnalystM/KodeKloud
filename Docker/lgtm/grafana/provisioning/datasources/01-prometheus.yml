@@ -1,0 +1,7 @@
+# apiVersion: 1
+# datasources:
+#   - name: Prometheus-HOMELAB
+#     type: prometheus
+#     url: http://prometheus:9090  # URL do Prometheus dentro da rede Docker
+#     access: proxy
+#     isDefault: true
