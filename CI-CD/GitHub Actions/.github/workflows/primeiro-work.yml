@@ -1,0 +1,25 @@
+name: First Workflow
+
+on: push
+
+jobs:
+    first_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v4
+            
+            - name: Welcome message
+              run: |
+                echo "Welcome to the first GitHub Actions Workflow"
+                ls -ltra
+                cat README.md
+            - name: Generate ASCCI
+              run: cowsay -f dragon "Run for cover, I am a DRAGON....RAWR!" >> dragon.txt 
+          
+
+            # - name: Lsit files in the repository
+            #   run: ls -l
+            
+            # - name: Read file
+            #   run: cat README.md
